@@ -1,0 +1,4 @@
+CREATE TABLE user (
+    id STRING(36) NOT NULL,
+    username STRING(255) NOT NULL
+) PRIMARY KEY (id);
