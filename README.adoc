@@ -1,0 +1,28 @@
+= Bootiful GCP - High Available and Scalable Hello World Application
+
+En esta demo se hace uso de los siguientes servicios de GCP para la integración con spring:
+
+* Memorystore
+* Runtime Config
+* Spanner
+* Stackdriver
+
+Adicionalmente, creamos una VM para poder ejecutar el jar.
+
+1. Ejecutar el siguiente comando `gcloud alpha billing accounts list` y obtener el `ACCOUNT_ID`
+
+2. En el archivo `gcp-setup.sh`, elegir un id del proyecto y colocarlo en la línea 3 (`PROJECT_ID`). También, agregar el valor copiado anteriomente `ACCOUNT_ID` en la línea 4 (`GCP_BILLING_ACCOUNT_ID`)
+
+3. Ejecutar `./gcp-setup.sh`
+
+4. Copiar la ip que se muestra en los logs `Your ip is x.x.x.x`
+
+5. Realizar llamadas `curl http://x.x.x.x:8080/hello/Milton`
+
+6. Cambiar el property via Cloud Shell `gcloud beta runtime-config configs variables set welcome.message "Bienvenido" --config-name hahelloworld_cloud`
+
+7. Refrescar los properties en la aplicación `curl -X POST http://x.x.x.x:8080/actuator/refresh`
+
+8. Realizar llamadas `curl http://x.x.x.x:8080/hello/otavio` y el mensaje debe ser `Bienvenido otavio`
+
+9. Visualizar Stackdriver y los request que se han realizado
