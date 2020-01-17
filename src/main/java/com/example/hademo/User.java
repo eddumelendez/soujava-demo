@@ -1,23 +1,30 @@
 package com.example.hademo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.UUID;
 
-@Entity
-public class User {
+import org.springframework.cloud.gcp.data.spanner.core.mapping.PrimaryKey;
+import org.springframework.cloud.gcp.data.spanner.core.mapping.Table;
+import org.springframework.data.annotation.Id;
 
+@Table
+public class User implements Serializable {
+
+	@PrimaryKey
 	@Id
-	@GeneratedValue
-	private Long id;
+	private String id;
 
 	private String username;
 
-	public Long getId() {
+	public User() {
+		this.id = UUID.randomUUID().toString();
+	}
+
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

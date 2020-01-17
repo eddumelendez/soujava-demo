@@ -24,7 +24,7 @@ public class UserService {
 	@PostConstruct
 	public void load() {
 		this.repository.deleteAll();
-		Stream.of("Eddú", "Eduardo", "Milton", "Katherine")
+		Stream.of("otavio", "eddu")
 				.map(username -> {
 					User user = new User();
 					user.setUsername(username);
